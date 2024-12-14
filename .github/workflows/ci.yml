@@ -1,1 +1,16 @@
+name: CI
 
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu_latest
+    steps:
+    - name: Pull repo
+      uses: action/checkout@v4
+    - name: hello world
+      run: echo "hello world"
