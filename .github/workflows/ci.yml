@@ -2,15 +2,39 @@ name: CI
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   pull_request:
-    branches: ["main"]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Pull repo
-        uses: actions/checkout@v4
-      - name: Hello World
-        run: echo "hello world"
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Build Docker image
+      run: |
+        docker build -t my-flask-app .
+
+    - name: Run basic tests
+      run: echo "Test"
+
+    - name: Scan Docker image with Trivy
+      uses: aquasecurity/trivy-action@v0.5.0
+      with:
+        image-ref: my-flask-app
+        format: 'table'  
