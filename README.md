@@ -1,4 +1,4 @@
-# Projekt: Prosta aplikacja webowa z Flask
+# Projekt: Aplikacja webowa z Flask
 
 ### Opis projektu
 
@@ -22,8 +22,7 @@ Przed rozpoczęciem instalacji i uruchomienia projektu należy upewnić się, ż
 
 Sklonuj projekt na swoją maszynę lokalną:
 
-`git clone https://github.com/chaoxly/devops
-cd devops`
+`git clone https://github.com/chaoxly/devops && cd devops`
 
 2. Budowanie obrazu Dockera
 
